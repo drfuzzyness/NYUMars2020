@@ -130,7 +130,7 @@ Material:
       data:
         first:
           name: _Size
-        second: 0.01
+        second: 0.005
       data:
         first:
           name: _Falloff

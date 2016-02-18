@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: moon2048x1024
-  m_Shader: {fileID: 4800000, guid: 6d3639ee91acc48bbb937745e80eb02e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1231c679939b043cda9a52c1ebc6d6a5, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: 3000
@@ -33,7 +33,7 @@ Material:
       data:
         first:
           name: _Size
-        second: 0.1
+        second: 0.005
       data:
         first:
           name: _Falloff
