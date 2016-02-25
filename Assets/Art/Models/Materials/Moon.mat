@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: moon2048x1024
+  m_Name: Moon
   m_Shader: {fileID: 4800000, guid: 1231c679939b043cda9a52c1ebc6d6a5, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
