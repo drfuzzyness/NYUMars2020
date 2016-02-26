@@ -11,6 +11,7 @@ GameObject:
   - 223: {fileID: 22348204}
   - 114: {fileID: 11418878}
   - 114: {fileID: 11493452}
+  - 114: {fileID: 11480560}
   m_Layer: 5
   m_Name: OverlayCanvas
   m_TagString: Untagged
@@ -34,7 +35,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &11418878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,6 +84,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11480560
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9874c0162b774b1cbf4d9022e0d4bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraFade: {fileID: 11420660}
 --- !u!114 &11493452
 MonoBehaviour:
   m_ObjectHideFlags: 1

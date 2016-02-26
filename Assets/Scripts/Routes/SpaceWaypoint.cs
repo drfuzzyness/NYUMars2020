@@ -4,8 +4,8 @@ using System.Collections;
 public class SpaceWaypoint : MonoBehaviour {
 	
 	public SpaceWaypoint next;
-	public float timeToNext;
-	public AnimationCurve animation;
+	// public float timeToNext;
+	// public AnimationCurve animation;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +13,7 @@ public class SpaceWaypoint : MonoBehaviour {
 	}
 	
 	void OnDrawGizmos() {
-		Gizmos.DrawWireSphere( transform.position, 1f );
+		Gizmos.DrawWireSphere( transform.position, 0.25f );
 		if( next != null ) {
 			Gizmos.DrawLine( transform.position, next.transform.position );
 		}
