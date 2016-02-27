@@ -10,12 +10,10 @@ public class InterplanetaryTimeline : MonoBehaviour {
 	
 	[HeaderAttribute("Times")]
 	public float openingDuration;
-	
-	public SpaceWaypoint startLighteningSkybox;
+	public float closingDuration;
+	public float peakSkyboxTransitionTime;
 	public float peakSkybox;
-	public SpaceWaypoint startDarkenSkybox;
 	public float lowSkybox;	
-	public SpaceWaypoint endFadeout;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +30,11 @@ public class InterplanetaryTimeline : MonoBehaviour {
 		CameraManager.instance.StartCameraFadeTo( 0f, openingDuration );
 		// StartCoroutine( WaypointLoop( startWaypoint ) );
 		startSegment.StartRoute();
-		yield return new WaitForSeconds( openingDuration );
+		yield return new WaitForSeconds( startSegment.totalTime );
+		midSegment.StartRoute();
+		CameraManager.instance.StartSkyboxFadeto( peakSkyboxTransitionTime, openingDuration );
+		yield return new WaitForSeconds( midSegment.totalTime - closingDuration );
+		CameraManager.instance.StartSkyboxFadeto( lowSkybox, closingDuration );
+		yield return new WaitForSeconds( closingDuration );
 	}
 }

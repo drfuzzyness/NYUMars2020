@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class CameraManager : MonoBehaviour {
 	public Image cameraFade;
 	public static CameraManager instance;
+	public float skyboxRotateSpeed;
+	private float rotation = 0;
 	// Use this for initialization
 	void Awake() {
 		instance = this;
@@ -16,7 +18,8 @@ public class CameraManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		rotation += Time.deltaTime * skyboxRotateSpeed;
+		RenderSettings.skybox.SetFloat( "_Rotation", rotation );
 	}
 	
 	public void StartCameraFadeTo( float opacity, float duration ) {
@@ -34,4 +37,20 @@ public class CameraManager : MonoBehaviour {
 		}
 		cameraFade.color = endColor;
 	}
+	
+	public void StartSkyboxFadeto( float exposure, float duration ) {
+		
+	}
+	
+	IEnumerator SkyboxFadeTo( float exposure, float duration ) {
+		float startExposure = RenderSettings.skybox.GetFloat( "_Exposure" );
+		for( float time = 0f; time < duration; time += Time.deltaTime) {
+			float ratio = time/duration;
+			float newExposure = Mathf.Lerp( startExposure, exposure, ratio );
+			RenderSettings.skybox.SetFloat( "_Exposure", newExposure );
+			yield return null;
+		}
+		RenderSettings.skybox.SetFloat( "_Exposure", exposure );
+	}
+	
 }
