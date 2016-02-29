@@ -18,8 +18,12 @@ public class CameraManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		rotation += Time.deltaTime * skyboxRotateSpeed;
-		RenderSettings.skybox.SetFloat( "_Rotation", rotation );
+		// rotation += Time.deltaTime * skyboxRotateSpeed;
+		// RenderSettings.skybox.SetFloat( "_Rotation", rotation );
+	}
+	
+	public void SetCameraFadeColor( Color newColor ) {
+		cameraFade.color = newColor;
 	}
 	
 	public void StartCameraFadeTo( float opacity, float duration ) {

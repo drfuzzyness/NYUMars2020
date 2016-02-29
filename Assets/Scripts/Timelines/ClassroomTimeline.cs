@@ -11,11 +11,19 @@ public class ClassroomTimeline : MonoBehaviour {
 	public float switchToRocketCamDelay;
 	public float screenFadeToBlackDelay;
 	// public audioc
+	[HeaderAttribute("Objects")]
 	public GameObject classroomSphere;
 	public GameObject room;
 	public GameObject launchpad;
 	public Text uiCountdownText;
 	public ParticleSystem rocketTrail;
+	[HeaderAttribute("Smoke")]
+	public AnimationCurve smokeColorCurve;
+	public float smokeScaleTime;
+	public Color smokeStartColor;
+	public Color smokeEndColor;
+	public ParticleSystem roomSmoke;
+	[HeaderAttribute("Camera Shake")]
 	public CameraShake launchpadCam;
 	public float peakLaunchpadCamShake;
 	public CameraShake rocketCam;
@@ -23,14 +31,16 @@ public class ClassroomTimeline : MonoBehaviour {
 	public SpaceRouteSegment rocketLaunchSegment;
 	public SpaceRouteSegment movePlayerToChairSegment;
 	public SpaceRouteSegment movePlayerIntoScreenSegment;
+	public SpaceRouteSegment movePlayerUpFromClassroom;
 	[HeaderAttribute("Sounds")]
+	public AudioController classroomVoiceover;
 	public AudioController countdownAudio;
 	public AudioController classroomAmbienceAudio;
 	public AudioController controlroomAmbienceAudio;
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine( Opening() );	
+		StartCoroutine( TakeoffOpening() );	
 	}
 	
 	// Update is called once per frame
@@ -38,7 +48,36 @@ public class ClassroomTimeline : MonoBehaviour {
 	
 	}
 	
-	IEnumerator Opening() {
+	IEnumerator TakeoffOpening() {
+		CameraManager.instance.StartCameraFadeTo(0f, screenFadeToBlackDelay );
+		classroomAmbienceAudio.Play();
+		yield return new WaitForSeconds( classroomDelay );
+		countdownAudio.Play();
+		yield return new WaitForSeconds( 5f );
+		// turn on smoke machine
+		StartCoroutine( SmokeMachineRoutine() );
+		yield return new WaitForSeconds( 2f );
+		movePlayerUpFromClassroom.StartRoute();
+		yield return new WaitForSeconds( movePlayerUpFromClassroom.totalTime - screenFadeToBlackDelay );
+		Color newFadeColor = Color.white;
+		newFadeColor.a = 0;
+		CameraManager.instance.SetCameraFadeColor( newFadeColor );
+		CameraManager.instance.StartCameraFadeTo(1f, screenFadeToBlackDelay );
+		yield return new WaitForSeconds( screenFadeToBlackDelay );
+		SceneManager.LoadScene(1);
+	}
+	
+	IEnumerator SmokeMachineRoutine() {
+		for( float time = 0; time < smokeScaleTime; time += Time.deltaTime ) {
+			float ratio = time / smokeScaleTime;
+			ratio = smokeColorCurve.Evaluate( ratio );
+			roomSmoke.startColor = Color.Lerp( smokeStartColor, smokeEndColor, ratio );
+			yield return null;
+		}
+		roomSmoke.startColor = smokeEndColor;
+	}
+	
+	IEnumerator RocketOpening() {
 		room.SetActive( false );
 		CameraManager.instance.StartCameraFadeTo(0f, screenFadeToBlackDelay );
 		launchpad.SetActive( false );

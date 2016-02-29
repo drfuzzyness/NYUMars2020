@@ -6,6 +6,7 @@ public class AudioController : MonoBehaviour {
 	public AnimationCurve openingCurve;
 	public float closingDuration;
 	public AnimationCurve closingCurve;
+	public bool closeAfterClipLength;
 	public float clipLength;
 	private CardboardAudioSource source;
 	private bool isPlaying;
@@ -41,7 +42,7 @@ public class AudioController : MonoBehaviour {
 			yield return null;
 		}
 		source.volume = peakVol;
-		if( !source.loop ) {
+		if( !source.loop || closeAfterClipLength ) {
 			yield return new WaitForSeconds(clipLength - openingDuration - closingDuration);
 			for( float time = 0f; time < closingDuration; time += Time.deltaTime ) {
 				float ratio = time / closingDuration;
