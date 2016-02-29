@@ -159,4 +159,4 @@ Material:
       data:
         first:
           name: _AtmoColor
-        second: {r: 0.14797792, g: 0.15793477, b: 0.16911763, a: 1}
+        second: {r: 0.5005, g: 0.53417665, b: 0.572, a: 1}
