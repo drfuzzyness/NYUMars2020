@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class InterplanetaryTimeline : MonoBehaviour {
 	
@@ -13,7 +14,9 @@ public class InterplanetaryTimeline : MonoBehaviour {
 	public float closingDuration;
 	public float peakSkyboxTransitionTime;
 	public float peakSkybox;
-	public float lowSkybox;	
+	public float lowSkybox;
+	[HeaderAttribute("Sounds")]
+	public AudioController rocketSound;
 
 	// Use this for initialization
 	void Start () {
@@ -36,5 +39,6 @@ public class InterplanetaryTimeline : MonoBehaviour {
 		yield return new WaitForSeconds( midSegment.totalTime - closingDuration );
 		CameraManager.instance.StartSkyboxFadeto( lowSkybox, closingDuration );
 		yield return new WaitForSeconds( closingDuration );
+		SceneManager.LoadScene(2);
 	}
 }

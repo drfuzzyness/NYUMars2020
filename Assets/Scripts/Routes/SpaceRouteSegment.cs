@@ -9,6 +9,7 @@ public class SpaceRouteSegment : MonoBehaviour {
 	public float totalTime;
 	public Transform subject;
 	public List<float> debugTS;
+	public int next;
 	
 	// Use this for initialization
 	public void StartRoute () {
@@ -35,7 +36,7 @@ public class SpaceRouteSegment : MonoBehaviour {
 			debugTS.Add( thisDist / totalDistance );
 		}
 		subject.position = waypoints[0].transform.position;
-		int next = 1;
+		next = 1;
 		float distanceTraveled = 0;
 		for( float time = 0f; time < totalTime; time += Time.deltaTime ) {
 			// Debug.Log( time );
@@ -44,7 +45,7 @@ public class SpaceRouteSegment : MonoBehaviour {
 			
 			
 			Vector3 toNextWaypointDisplacement = waypoints[next].transform.position - subject.position; // the distance to move
-			Debug.Log( "Remaining = " + toNextWaypointDisplacement.magnitude + ", Displacement = " + ( newDistance - distanceTraveled ) );
+			// Debug.Log( "Remaining = " + toNextWaypointDisplacement.magnitude + ", Displacement = " + ( newDistance - distanceTraveled ) );
 	
 			if( toNextWaypointDisplacement.magnitude < ( newDistance - distanceTraveled ) ) {
 				Debug.LogWarning("TRIGGERED.");

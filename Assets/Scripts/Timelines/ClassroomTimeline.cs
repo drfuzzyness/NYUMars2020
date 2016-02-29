@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ClassroomTimeline : MonoBehaviour {
 	public float classroomDelay;
@@ -8,6 +9,7 @@ public class ClassroomTimeline : MonoBehaviour {
 	public float rocketLaunchDelay;
 	public float rocketSpeed;
 	public float switchToRocketCamDelay;
+	public float screenFadeToBlackDelay;
 	// public audioc
 	public GameObject classroomSphere;
 	public GameObject room;
@@ -20,6 +22,7 @@ public class ClassroomTimeline : MonoBehaviour {
 	[HeaderAttribute("Movements")]
 	public SpaceRouteSegment rocketLaunchSegment;
 	public SpaceRouteSegment movePlayerToChairSegment;
+	public SpaceRouteSegment movePlayerIntoScreenSegment;
 	[HeaderAttribute("Sounds")]
 	public AudioController countdownAudio;
 	public AudioController classroomAmbienceAudio;
@@ -37,6 +40,7 @@ public class ClassroomTimeline : MonoBehaviour {
 	
 	IEnumerator Opening() {
 		room.SetActive( false );
+		CameraManager.instance.StartCameraFadeTo(0f, screenFadeToBlackDelay );
 		launchpad.SetActive( false );
 		classroomAmbienceAudio.Play();
 		yield return new WaitForSeconds( classroomDelay );
@@ -78,5 +82,10 @@ public class ClassroomTimeline : MonoBehaviour {
 		yield return new WaitForSeconds( switchToRocketCamDelay );
 		launchpadCam.gameObject.SetActive( false );
 		rocketCam.gameObject.SetActive( true );
+		movePlayerIntoScreenSegment.StartRoute();
+		yield return new WaitForSeconds( movePlayerIntoScreenSegment.totalTime - screenFadeToBlackDelay );
+		CameraManager.instance.StartCameraFadeTo(1f, screenFadeToBlackDelay );
+		yield return new WaitForSeconds( screenFadeToBlackDelay );
+		SceneManager.LoadScene(1);
 	}
 }
