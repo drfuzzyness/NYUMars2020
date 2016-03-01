@@ -35,8 +35,8 @@ public class InterplanetaryTimeline : MonoBehaviour {
 	
 	IEnumerator Opening() {
 		rocketSound.Play();
-		CameraManager.instance.SetCameraFadeColor( Color.white );
-		CameraManager.instance.StartCameraFadeTo( 0f, openingDuration );
+		CameraManager.inst.SetCameraFadeColor( Color.white );
+		CameraManager.inst.StartCameraFadeTo( 0f, openingDuration );
 		// StartCoroutine( WaypointLoop( startWaypoint ) );
 		startSegment.StartRoute();
 		Color cloudsStartColor = cloudsParticles.GetComponent<ParticleSystemRenderer>().material.GetColor("_TintColor");
@@ -50,12 +50,12 @@ public class InterplanetaryTimeline : MonoBehaviour {
 		}
 		yield return new WaitForSeconds( startSegment.totalTime - cloudsLifetime );
 		midSegment.StartRoute();
-		CameraManager.instance.StartSkyboxFadeto( peakSkyboxTransitionTime, openingDuration );
+		CameraManager.inst.StartSkyboxFadeto( peakSkyboxTransitionTime, openingDuration );
 		yield return new WaitForSeconds( midSegment.totalTime - closingDuration );
 		Color newFadeColor = Color.black;
 		newFadeColor.a = 0;
-		CameraManager.instance.SetCameraFadeColor( newFadeColor );
-		CameraManager.instance.StartSkyboxFadeto( lowSkybox, closingDuration );
+		CameraManager.inst.SetCameraFadeColor( newFadeColor );
+		CameraManager.inst.StartSkyboxFadeto( lowSkybox, closingDuration );
 		yield return new WaitForSeconds( closingDuration );
 		SceneManager.LoadScene(2);
 	}

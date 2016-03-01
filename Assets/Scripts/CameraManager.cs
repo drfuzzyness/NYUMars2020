@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 public class CameraManager : MonoBehaviour {
 	public Image cameraFade;
-	public static CameraManager instance;
+	public static CameraManager inst;
 	public float skyboxRotateSpeed;
 	private float rotation = 0;
 	// Use this for initialization
 	void Awake() {
-		instance = this;
+		inst = this;
 	}
 	
 	void Start () {

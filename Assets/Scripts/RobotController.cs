@@ -19,6 +19,14 @@ public class RobotController : MonoBehaviour {
 	[HeaderAttribute("Sounds")]
 	public CardboardAudioSource dirtSound;
 	public AudioController collectionSound;
+	[HeaderAttribute("Robot Animation")]
+	public Transform collectorWheel;
+	public float collectorSpinSpeed;
+	public AnimationCurve collectorSpinSpeedCurve;
+	public Transform collectorEntireArm;
+	public Vector3 collectorLoweredRotation;
+	public Vector3 collectorRaisedRotation;
+	public AnimationCurve collectorMovementCurve;
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
@@ -45,7 +53,7 @@ public class RobotController : MonoBehaviour {
 		player.position = playerTarget.position;
 		if( canUserControl ) {
 			if( Cardboard.SDK.Triggered ) {
-				Debug.Log("triggered");
+				// Debug.Log("triggered");
 				// Cardboard.SDK.HeadPose.Position;
 				Ray gaze = new Ray(
 					Cardboard.SDK.HeadPose.Position + player.position,
@@ -54,9 +62,9 @@ public class RobotController : MonoBehaviour {
 				RaycastHit gazeHit;
 				
 				if( Physics.Raycast( gaze, out gazeHit )) {
-					Debug.Log("Hit: " + gazeHit.collider.gameObject + " at " + gazeHit.point);
+					// Debug.Log("Hit: " + gazeHit.collider.gameObject + " at " + gazeHit.point);
 					if( gazeHit.collider.CompareTag("Terrain")) {
-						Debug.Log( "Set" );
+						// Debug.Log( "Set" );
 						SetWaypoint( gazeHit.point );
 					}
 				}
@@ -80,18 +88,53 @@ public class RobotController : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider col) {
-		if( col.gameObject.CompareTag("Collectable") ) {
+		
+		if( col.CompareTag("Collectable") ) {
 			if( col.GetComponent<SoilSampleSite>().collectable ) {
-				
+				StartCoroutine( SoilCollection( col.GetComponent<SoilSampleSite>() ) );
 			}
+		} else if( col.CompareTag("ExitZone") ) {
+			
 		}
 	}
 	
-	IEnumerator SoilCollection() {
+	// void OnCollisionEnter( Collision col) {
+	// 	Debug.Log( col.gameObject );
+	// }
+	
+	IEnumerator SoilCollection( SoilSampleSite site ) {
+		Debug.Log( "Starting soil collection" );
+		site.Hide();
 		agent.Stop();
 		canUserControl = false;
-		collectionSound.Play();
+		// collectionSound.Play();
+		StartCoroutine( CollectorAnimation() );
 		yield return new WaitForSeconds( collectionDuration );
-		collectionSound.Halt();
+		// collectionSound.Halt();
+		site.collectable = false;
+		canUserControl = true;
+		Debug.Log( "Soil collection done" );
+		MarsTimeline.inst.DoneCollectingSample(); 
+	}
+	
+	IEnumerator CollectorAnimation() {
+		StartCoroutine( SpinCollectorWheel( collectionDuration ) );
+		for( float time = 0f; time < 2f; time += Time.deltaTime ) {
+			float ratio = time / 2f;
+			yield return null;
+		}
+	}
+	
+	IEnumerator SpinCollectorWheel( float duration ) {
+		float speed = 0f;
+		for( float time = 0f; time < duration; time += Time.deltaTime ) {
+			if( time < 1f ) {
+				speed = Mathf.Lerp( 0f, collectorSpinSpeed, time / 1f );
+			} else if ( time > duration - 1f ) {
+				speed = Mathf.Lerp( 0f, collectorSpinSpeed, time - (duration - 1f) / 1f );
+			}
+			collectorWheel.Rotate( speed * Time.deltaTime * Vector3.forward, Space.Self );
+			yield return null;
+		}
 	}
 }
