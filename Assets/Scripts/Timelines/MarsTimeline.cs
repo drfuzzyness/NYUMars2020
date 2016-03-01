@@ -13,6 +13,8 @@ public class MarsTimeline : MonoBehaviour {
 	public float openingFadeIn;
 	[HeaderAttribute("UI")]
 	public Text uiSamplesText;
+	public Text uiSamplesLabelText;
+	public Text uiInstructionsText;
 	
 
 	// Use this for initialization
@@ -23,5 +25,15 @@ public class MarsTimeline : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		uiSamplesText.text = samplesCollected + "/" + requiredSamples;
+	}
+	
+	public void DoneCollectingSample() {
+		samplesCollected++;
+		if( samplesCollected >= requiredSamples ) {
+			uiSamplesText.gameObject.SetActive( false );
+			uiSamplesLabelText.gameObject.SetActive( false );
+			uiInstructionsText.gameObject.SetActive( true );
+			uiInstructionsText.text = "RETURN to BASE\nfor ANALYSIS";
+		}
 	}
 }

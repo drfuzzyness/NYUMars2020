@@ -3,6 +3,7 @@ using System.Collections;
 
 public class RobotController : MonoBehaviour {
 	
+	
 	public bool isMoving;
 	public bool isHarvesting;
 	public bool canUserControl;
@@ -10,8 +11,14 @@ public class RobotController : MonoBehaviour {
 	public Transform player;
 	public Transform playerTarget;
 	public LineRenderer uiLine;
+	
 	private NavMeshAgent agent;
 	private Rigidbody rbody;
+	[HeaderAttribute("Collection")]
+	public float collectionDuration;
+	[HeaderAttribute("Sounds")]
+	public CardboardAudioSource dirtSound;
+	public AudioController collectionSound;
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
@@ -24,6 +31,16 @@ public class RobotController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		dirtSound.pitch = Mathf.Lerp(
+			0,
+			1,
+			agent.velocity.magnitude / agent.speed
+		);
+		dirtSound.volume = Mathf.Lerp(
+			0,
+			1,
+			agent.velocity.magnitude / agent.speed
+		);
 		// check if click
 		player.position = playerTarget.position;
 		if( canUserControl ) {
@@ -64,7 +81,17 @@ public class RobotController : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider col) {
 		if( col.gameObject.CompareTag("Collectable") ) {
-			
+			if( col.GetComponent<SoilSampleSite>().collectable ) {
+				
+			}
 		}
+	}
+	
+	IEnumerator SoilCollection() {
+		agent.Stop();
+		canUserControl = false;
+		collectionSound.Play();
+		yield return new WaitForSeconds( collectionDuration );
+		collectionSound.Halt();
 	}
 }
