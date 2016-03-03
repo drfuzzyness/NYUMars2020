@@ -17,6 +17,7 @@ public class InterplanetaryTimeline : MonoBehaviour {
 	public float lowSkybox;
 	[HeaderAttribute("Sounds")]
 	public AudioController rocketSound;
+	public AudioController nasaTestSound;
 	[HeaderAttribute("Clouds")]
 	public AnimationCurve cloudsCurve;
 	public ParticleSystem cloudsParticles;
@@ -35,8 +36,8 @@ public class InterplanetaryTimeline : MonoBehaviour {
 	
 	IEnumerator Opening() {
 		rocketSound.Play();
-		CameraManager.instance.SetCameraFadeColor( Color.white );
-		CameraManager.instance.StartCameraFadeTo( 0f, openingDuration );
+		CameraManager.inst.SetCameraFadeColor( Color.white );
+		CameraManager.inst.StartCameraFadeTo( 0f, openingDuration );
 		// StartCoroutine( WaypointLoop( startWaypoint ) );
 		startSegment.StartRoute();
 		Color cloudsStartColor = cloudsParticles.GetComponent<ParticleSystemRenderer>().material.GetColor("_TintColor");
@@ -50,12 +51,14 @@ public class InterplanetaryTimeline : MonoBehaviour {
 		}
 		yield return new WaitForSeconds( startSegment.totalTime - cloudsLifetime );
 		midSegment.StartRoute();
-		CameraManager.instance.StartSkyboxFadeto( peakSkyboxTransitionTime, openingDuration );
+		CameraManager.inst.StartSkyboxFadeto( peakSkyboxTransitionTime, openingDuration );
+		nasaTestSound.Play();
 		yield return new WaitForSeconds( midSegment.totalTime - closingDuration );
 		Color newFadeColor = Color.black;
 		newFadeColor.a = 0;
-		CameraManager.instance.SetCameraFadeColor( newFadeColor );
-		CameraManager.instance.StartSkyboxFadeto( lowSkybox, closingDuration );
+		CameraManager.inst.SetCameraFadeColor( newFadeColor );
+		CameraManager.inst.StartSkyboxFadeto( lowSkybox, closingDuration );
+		CameraManager.inst.StartCameraFadeTo( 1f, closingDuration );
 		yield return new WaitForSeconds( closingDuration );
 		SceneManager.LoadScene(2);
 	}

@@ -49,9 +49,11 @@ public class ClassroomTimeline : MonoBehaviour {
 	}
 	
 	IEnumerator TakeoffOpening() {
-		CameraManager.instance.StartCameraFadeTo(0f, screenFadeToBlackDelay );
+		CameraManager.inst.StartCameraFadeTo(0f, screenFadeToBlackDelay );
 		classroomAmbienceAudio.Play();
-		yield return new WaitForSeconds( classroomDelay );
+		while( !Cardboard.SDK.Triggered ) {
+			yield return null;
+		}
 		countdownAudio.Play();
 		yield return new WaitForSeconds( 5f );
 		// turn on smoke machine
@@ -61,8 +63,8 @@ public class ClassroomTimeline : MonoBehaviour {
 		yield return new WaitForSeconds( movePlayerUpFromClassroom.totalTime - screenFadeToBlackDelay );
 		Color newFadeColor = Color.white;
 		newFadeColor.a = 0;
-		CameraManager.instance.SetCameraFadeColor( newFadeColor );
-		CameraManager.instance.StartCameraFadeTo(1f, screenFadeToBlackDelay );
+		CameraManager.inst.SetCameraFadeColor( newFadeColor );
+		CameraManager.inst.StartCameraFadeTo(1f, screenFadeToBlackDelay );
 		yield return new WaitForSeconds( screenFadeToBlackDelay );
 		SceneManager.LoadScene(1);
 	}
@@ -79,7 +81,7 @@ public class ClassroomTimeline : MonoBehaviour {
 	
 	IEnumerator RocketOpening() {
 		room.SetActive( false );
-		CameraManager.instance.StartCameraFadeTo(0f, screenFadeToBlackDelay );
+		CameraManager.inst.StartCameraFadeTo(0f, screenFadeToBlackDelay );
 		launchpad.SetActive( false );
 		classroomAmbienceAudio.Play();
 		yield return new WaitForSeconds( classroomDelay );
@@ -123,7 +125,7 @@ public class ClassroomTimeline : MonoBehaviour {
 		rocketCam.gameObject.SetActive( true );
 		movePlayerIntoScreenSegment.StartRoute();
 		yield return new WaitForSeconds( movePlayerIntoScreenSegment.totalTime - screenFadeToBlackDelay );
-		CameraManager.instance.StartCameraFadeTo(1f, screenFadeToBlackDelay );
+		CameraManager.inst.StartCameraFadeTo(1f, screenFadeToBlackDelay );
 		yield return new WaitForSeconds( screenFadeToBlackDelay );
 		SceneManager.LoadScene(1);
 	}
