@@ -131,7 +131,7 @@ MonoBehaviour:
   occlusionEnabled: 0
   playOnAwake: 1
   rolloffMode: 0
-  sourceClip: {fileID: 8300000, guid: 5985c7f25730a487f9c5052271fa48be, type: 3}
+  sourceClip: {fileID: 8300000, guid: 3a8e0b68576f24c7d853999f79879862, type: 3}
   sourceLoop: 1
   sourceMute: 0
   sourcePitch: 1
@@ -204,19 +204,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 459604, guid: 45375ac5e45e14f2a8ba1641c58edbee, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 2.9515515e-17
+      value: 3.035891e-17
       objectReference: {fileID: 0}
     - target: {fileID: 459604, guid: 45375ac5e45e14f2a8ba1641c58edbee, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.40132558
+      value: -0.014230239
       objectReference: {fileID: 0}
     - target: {fileID: 459604, guid: 45375ac5e45e14f2a8ba1641c58edbee, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 8.1359185e-18
+      value: -3.9617427e-18
       objectReference: {fileID: 0}
     - target: {fileID: 459604, guid: 45375ac5e45e14f2a8ba1641c58edbee, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.9159355
+      value: -0.9998988
       objectReference: {fileID: 0}
     - target: {fileID: 459604, guid: 45375ac5e45e14f2a8ba1641c58edbee, type: 2}
       propertyPath: m_RootOrder
@@ -234,6 +234,107 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45375ac5e45e14f2a8ba1641c58edbee, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &325806723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 325806724}
+  - 114: {fileID: 325806726}
+  - 114: {fileID: 325806725}
+  m_Layer: 0
+  m_Name: NASA Test Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &325806724
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 325806723}
+  m_LocalRotation: {x: 0, y: -0.58254397, z: 0, w: 0.8127993}
+  m_LocalPosition: {x: -0.024, y: -0.04399991, z: 0.02}
+  m_LocalScale: {x: 0.29278183, y: 0.2927819, z: 0.29278183}
+  m_Children: []
+  m_Father: {fileID: 1461791559}
+  m_RootOrder: 3
+--- !u!114 &325806725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 325806723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1175507a3ba2941bea44144c76fa0101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openingDuration: 0.5
+  openingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  closingDuration: 2
+  closingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  closeAfterClipLength: 0
+  clipLength: 12
+--- !u!114 &325806726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 325806723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbca64e524ea44f9b26142ec59aca8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directivityAlpha: 0
+  directivitySharpness: 1
+  gainDb: 0
+  occlusionEnabled: 0
+  playOnAwake: 0
+  rolloffMode: 0
+  sourceClip: {fileID: 8300000, guid: 7f1a4f6108156482687791bdd5b41fc0, type: 3}
+  sourceLoop: 0
+  sourceMute: 0
+  sourcePitch: 1
+  sourceVolume: 0.3
+  sourceMaxDistance: 300
+  sourceMinDistance: 0
+  hrtfEnabled: 1
 --- !u!1 &445652543
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,11 +540,12 @@ MonoBehaviour:
   startSegment: {fileID: 1988830213}
   midSegment: {fileID: 968548313}
   openingDuration: 2
-  closingDuration: 4
+  closingDuration: 2
   peakSkyboxTransitionTime: 5
   peakSkybox: 2
   lowSkybox: 1
   rocketSound: {fileID: 1193957101}
+  nasaTestSound: {fileID: 325806725}
   cloudsCurve:
     serializedVersion: 2
     m_Curve:
@@ -518,15 +620,20 @@ MonoBehaviour:
       inSlope: 1.4557551
       outSlope: 1.4557551
       tangentMode: 0
-    - time: 0.68971074
-      value: 0.9686326
+    - time: 0.5655364
+      value: 0.9794551
       inSlope: 0.101522736
       outSlope: 0.101522736
       tangentMode: 0
+    - time: 0.79259205
+      value: 0.99662024
+      inSlope: 0.029206276
+      outSlope: 0.029206276
+      tangentMode: 0
     - time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 0.05511889
+      outSlope: 0.05511889
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -743,6 +850,7 @@ Transform:
   - {fileID: 1083898991}
   - {fileID: 1720395640}
   - {fileID: 60506427}
+  - {fileID: 325806724}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!1 &1610804243
@@ -4105,30 +4213,30 @@ MonoBehaviour:
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 0.41852224
+    - time: 0.33661997
       value: 0.049736325
       inSlope: 0.1750373
       outSlope: 0.1750373
       tangentMode: 0
-    - time: 0.5946938
+    - time: 0.5312856
       value: 0.534
       inSlope: 0.33328477
       outSlope: 0.33328477
       tangentMode: 0
-    - time: 0.85657597
+    - time: 0.79316777
       value: 0.583
       inSlope: 0.36424065
       outSlope: 0.36424065
       tangentMode: 0
     - time: 1
       value: 1
-      inSlope: 1.0359695
-      outSlope: 1.0359695
+      inSlope: 2.4842224
+      outSlope: 2.4842224
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  totalTime: 80
+  totalTime: 70
   subject: {fileID: 1461791559}
   debugTS: []
   next: 0
@@ -4262,6 +4370,10 @@ Prefab:
     - target: {fileID: 11400000, guid: b8b03d395f5734e98af91ccf44f9bf47, type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 148706, guid: b8b03d395f5734e98af91ccf44f9bf47, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b8b03d395f5734e98af91ccf44f9bf47, type: 2}

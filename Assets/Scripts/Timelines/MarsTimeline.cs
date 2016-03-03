@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -18,8 +19,14 @@ public class MarsTimeline : MonoBehaviour {
 	public Text uiSamplesLabelText;
 	public Text uiInstructionsText;
 	public static MarsTimeline inst;
+	[HeaderAttribute("UI")]
+	public RawImage logoNYU;
+	public Text logoSubtitle;
+	public Text logoSubtitle2;
 	[HeaderAttribute("Sound")]
 	public AudioController music;
+	[HeaderAttribute("Camera Timelines")]
+	public SpaceRouteSegment moveToSpaceTimeline;
 	
 	void Awake() {
 		inst = this;
@@ -46,20 +53,63 @@ public class MarsTimeline : MonoBehaviour {
 	}
 	
 	public void End() {
-		StartCoroutine( Ending() );
+		if( samplesCollected >= requiredSamples ) {
+			StartCoroutine( Ending() );
+		} else {
+			Debug.Log("Collect more samples");
+		}
 	}
 	
 	IEnumerator Ending() {
+		Debug.Log("Ending started");
 		robot.canUserControl = false;
-		// launch rocket
+		robot.agent.Stop();
+		robot.controlPlayerCamera = false;
+		yield return new WaitForSeconds(2);
+		moveToSpaceTimeline.StartRoute();
+		yield return new WaitForSeconds(4f);
+		StartCoroutine( LogoOnscreenAnimation() );
+		// float up from robot
 		// wait
 		// cue NYU animation
 		// wait
 		// fade out
-		CameraManager.inst.StartCameraFadeTo(0f, endingFadeOut);
+		yield return new WaitForSeconds(8f);
+		CameraManager.inst.StartCameraFadeTo(1f, endingFadeOut);
 		music.Halt();
 		yield return new WaitForSeconds( endingFadeOut );
 		// credits
 		SceneManager.LoadScene(3);
+	}
+	
+	IEnumerator LogoOnscreenAnimation() {
+		Color clearWhite = Color.white;
+		clearWhite.a = 0;
+		for( float time = 0f; time < 2f; time += Time.deltaTime ) {
+			logoNYU.color = Color.Lerp(
+				clearWhite,
+				Color.white,
+				time / 2f
+			);
+			yield return null;
+		}
+		logoNYU.color = Color.white;
+		yield return new WaitForSeconds( 1f );
+		for( float time = 0f; time < 2f; time += Time.deltaTime ) {
+			logoSubtitle.color = Color.Lerp(
+				clearWhite,
+				Color.white,
+				time / 2f
+			);
+			yield return null;
+		}
+		for( float time = 0f; time < 2f; time += Time.deltaTime ) {
+			logoSubtitle2.color = Color.Lerp(
+				clearWhite,
+				Color.white,
+				time / 2f
+			);
+			yield return null;
+		}
 	}
 }

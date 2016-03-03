@@ -33,11 +33,12 @@ public class SoilSampleSite : MonoBehaviour {
 	}
 	
 	IEnumerator HideRoutine() {
+		// collectable = false;
 		Vector3 startPos = sign.localPosition;
 		Vector3 endPos = startPos + hiddenPosition;
 		for( float time = 0f; time < signHideDuration; time += Time.deltaTime) {
 			// Inverted because we're moving the animationcurve backwards
-			float ratio =  1 - (time / signHideDuration);
+			float ratio =  time / signHideDuration;
 			ratio = signHideCurve.Evaluate( ratio );
 			sign.localPosition = Vector3.Lerp( startPos, endPos, ratio );
 			yield return null;

@@ -51,7 +51,9 @@ public class ClassroomTimeline : MonoBehaviour {
 	IEnumerator TakeoffOpening() {
 		CameraManager.inst.StartCameraFadeTo(0f, screenFadeToBlackDelay );
 		classroomAmbienceAudio.Play();
-		yield return new WaitForSeconds( classroomDelay );
+		while( !Cardboard.SDK.Triggered ) {
+			yield return null;
+		}
 		countdownAudio.Play();
 		yield return new WaitForSeconds( 5f );
 		// turn on smoke machine

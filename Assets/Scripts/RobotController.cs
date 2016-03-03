@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RobotController : MonoBehaviour {
 	
-	
+	public bool controlPlayerCamera;
 	public bool isMoving;
 	public bool isHarvesting;
 	public bool canUserControl;
@@ -12,7 +12,7 @@ public class RobotController : MonoBehaviour {
 	public Transform playerTarget;
 	public LineRenderer uiLine;
 	
-	private NavMeshAgent agent;
+	public NavMeshAgent agent;
 	private Rigidbody rbody;
 	[HeaderAttribute("Collection")]
 	public float collectionDuration;
@@ -31,6 +31,7 @@ public class RobotController : MonoBehaviour {
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
 		rbody = GetComponent<Rigidbody>();
+		controlPlayerCamera = true;
 	}
 	
 	void OnDrawGizmos() {
@@ -50,7 +51,7 @@ public class RobotController : MonoBehaviour {
 			agent.velocity.magnitude / agent.speed
 		);
 		// check if click
-		player.position = playerTarget.position;
+		
 		if( canUserControl ) {
 			if( Cardboard.SDK.Triggered ) {
 				// Debug.Log("triggered");
@@ -70,8 +71,9 @@ public class RobotController : MonoBehaviour {
 				}
 			}
 		}
-		
-		
+		if( controlPlayerCamera ) {
+			player.position = playerTarget.position;
+		}
 		
 		// Robot moving
 		uiLine.SetPosition(0, uiLine.transform.position);
@@ -113,6 +115,7 @@ public class RobotController : MonoBehaviour {
 		// collectionSound.Halt();
 		site.collectable = false;
 		canUserControl = true;
+		agent.Resume();
 		Debug.Log( "Soil collection done" );
 		MarsTimeline.inst.DoneCollectingSample(); 
 	}
@@ -128,12 +131,12 @@ public class RobotController : MonoBehaviour {
 	IEnumerator SpinCollectorWheel( float duration ) {
 		float speed = 0f;
 		for( float time = 0f; time < duration; time += Time.deltaTime ) {
-			if( time < 1f ) {
-				speed = Mathf.Lerp( 0f, collectorSpinSpeed, time / 1f );
-			} else if ( time > duration - 1f ) {
-				speed = Mathf.Lerp( 0f, collectorSpinSpeed, time - (duration - 1f) / 1f );
+			if( time < .5f ) {
+				speed = Mathf.Lerp( 0f, collectorSpinSpeed, time / .5f );
+			} else if ( time > duration - .5f ) {
+				speed = Mathf.Lerp( 0f, collectorSpinSpeed, time - (duration - .5f) / .5f );
 			}
-			collectorWheel.Rotate( speed * Time.deltaTime * Vector3.forward, Space.Self );
+			collectorWheel.Rotate( speed * Time.deltaTime * Vector3.right, Space.Self );
 			yield return null;
 		}
 	}

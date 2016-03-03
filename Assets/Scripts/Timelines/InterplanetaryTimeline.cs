@@ -17,6 +17,7 @@ public class InterplanetaryTimeline : MonoBehaviour {
 	public float lowSkybox;
 	[HeaderAttribute("Sounds")]
 	public AudioController rocketSound;
+	public AudioController nasaTestSound;
 	[HeaderAttribute("Clouds")]
 	public AnimationCurve cloudsCurve;
 	public ParticleSystem cloudsParticles;
@@ -51,11 +52,13 @@ public class InterplanetaryTimeline : MonoBehaviour {
 		yield return new WaitForSeconds( startSegment.totalTime - cloudsLifetime );
 		midSegment.StartRoute();
 		CameraManager.inst.StartSkyboxFadeto( peakSkyboxTransitionTime, openingDuration );
+		nasaTestSound.Play();
 		yield return new WaitForSeconds( midSegment.totalTime - closingDuration );
 		Color newFadeColor = Color.black;
 		newFadeColor.a = 0;
 		CameraManager.inst.SetCameraFadeColor( newFadeColor );
 		CameraManager.inst.StartSkyboxFadeto( lowSkybox, closingDuration );
+		CameraManager.inst.StartCameraFadeTo( 1f, closingDuration );
 		yield return new WaitForSeconds( closingDuration );
 		SceneManager.LoadScene(2);
 	}

@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: lunabotsPhotoshpere
-  m_Shader: {fileID: 103, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION
   m_LightmapFlags: 0
-  m_CustomRenderQueue: 1000
+  m_CustomRenderQueue: 2000
   stringTagMap:
     RenderType: Transparent
   m_SavedProperties:
@@ -169,9 +169,9 @@ Material:
         second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
       data:
         first:
-          name: _EmisColor
-        second: {r: 0.2, g: 0.2, b: 0.2, a: 0}
-      data:
-        first:
           name: _Tint
         second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+      data:
+        first:
+          name: _EmisColor
+        second: {r: 0.2, g: 0.2, b: 0.2, a: 0}
