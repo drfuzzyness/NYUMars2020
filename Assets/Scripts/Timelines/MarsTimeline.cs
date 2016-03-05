@@ -22,13 +22,17 @@ public class MarsTimeline : MonoBehaviour {
 	public static MarsTimeline inst;
 	public GameObject reticle;
 	
-	
 	[HeaderAttribute("Sound")]
 	public AudioController music;
 	
 	[HeaderAttribute("Camera Timelines")]
 	public SpaceRouteSegment moveToSpaceTimeline;
 	public SpaceRouteSegment landingTimeline;
+	
+	[HeaderAttribute("Tutorial")]
+	public Transform headset;
+	public Transform headsetLookTarget;
+	public Transform tutorialContainer;
 	
 	[HeaderAttribute("UI")]
 	public RawImage logoNYU;
@@ -110,6 +114,23 @@ public class MarsTimeline : MonoBehaviour {
 		robot.canUserControl = false;
 		reticle.SetActive( false );
 		landingTimeline.StartRoute();
+		StartCoroutine( MarsTutorial() );
+		yield return new WaitForSeconds( landingTimeline.totalTime );
+		robot.canUserControl = true;
+		reticle.SetActive( true );
+		robot.controlPlayerCamera = true;
+	}
+	
+	IEnumerator MarsTutorial() {
+		LineRenderer line = headset.GetComponent<LineRenderer>();
+		for( float time = 0f; time < landingTimeline.totalTime; time += Time.deltaTime ) {
+			headset.LookAt( headsetLookTarget );
+			line.SetPosition(0, headset.position);
+			line.SetPosition(1, headsetLookTarget.position );
+			yield return null;
+		}
+		headset.gameObject.SetActive( false );
+		tutorialContainer.gameObject.SetActive( false );
 	}
 	
 	IEnumerator Ending() {

@@ -31,7 +31,7 @@ public class RobotController : MonoBehaviour {
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
 		rbody = GetComponent<Rigidbody>();
-		controlPlayerCamera = true;
+		controlPlayerCamera = false;
 	}
 	
 	void OnDrawGizmos() {
