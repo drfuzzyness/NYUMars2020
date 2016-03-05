@@ -14,19 +14,34 @@ public class MarsTimeline : MonoBehaviour {
 	[HeaderAttribute("Times")]
 	public float openingFadeIn;
 	public float endingFadeOut;
+	
 	[HeaderAttribute("UI")]
 	public Text uiSamplesText;
 	public Text uiSamplesLabelText;
 	public Text uiInstructionsText;
 	public static MarsTimeline inst;
+	public GameObject reticle;
+	
+	
+	[HeaderAttribute("Sound")]
+	public AudioController music;
+	
+	[HeaderAttribute("Camera Timelines")]
+	public SpaceRouteSegment moveToSpaceTimeline;
+	public SpaceRouteSegment landingTimeline;
+	
 	[HeaderAttribute("UI")]
 	public RawImage logoNYU;
 	public Text logoSubtitle;
 	public Text logoSubtitle2;
-	[HeaderAttribute("Sound")]
-	public AudioController music;
-	[HeaderAttribute("Camera Timelines")]
-	public SpaceRouteSegment moveToSpaceTimeline;
+	
+	[HeaderAttribute("Navigation UI")]
+	public bool showCompass;
+	public CollectionStage currentStage;
+	public enum CollectionStage { NeedSites, NeedLeave, Free }
+	public List<SoilSampleSite> soilSites;
+	public EndOnCollide endSite;
+	public Transform compass;
 	
 	void Awake() {
 		inst = this;
@@ -34,17 +49,19 @@ public class MarsTimeline : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		samplesCollected = 0;
-		CameraManager.inst.StartCameraFadeTo(0f, openingFadeIn );
+		StartCoroutine( Opening() );
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		uiSamplesText.text = samplesCollected + "/" + requiredSamples;
+		UpdateCompass();
 	}
 	
 	public void DoneCollectingSample() {
 		samplesCollected++;
 		if( samplesCollected >= requiredSamples ) {
+			currentStage = CollectionStage.NeedLeave;
 			uiSamplesText.gameObject.SetActive( false );
 			uiSamplesLabelText.gameObject.SetActive( false );
 			uiInstructionsText.gameObject.SetActive( true );
@@ -58,6 +75,41 @@ public class MarsTimeline : MonoBehaviour {
 		} else {
 			Debug.Log("Collect more samples");
 		}
+	}
+	
+	void UpdateCompass() {
+		if( currentStage == CollectionStage.NeedSites || currentStage == CollectionStage.Free ) {
+			//get closet soil site
+			float nearestDist = 10000000000; // arbitrary high number 
+			int nearestIndex = -1;
+			for( int i = 0; i < soilSites.Count; i++ ) {
+				if( soilSites[i].collectable ) {
+					Vector3 displacement = soilSites[i].transform.position - robot.transform.position;
+					if( displacement.magnitude < nearestDist ) {
+						nearestDist = displacement.magnitude;
+						nearestIndex = i;
+					}
+				}
+			}
+			if( nearestIndex == -1 ) {
+				// uh oh?
+				currentStage = CollectionStage.NeedLeave;
+			} else {
+				// move compass to look at target
+				compass.LookAt( soilSites[nearestIndex].transform );
+			}
+		} else if( currentStage == CollectionStage.NeedLeave ) {
+			compass.LookAt( endSite.transform );
+		} else {
+			// do nothing?
+		}
+	}
+	
+	IEnumerator Opening() {
+		CameraManager.inst.StartCameraFadeTo(0f, openingFadeIn );
+		robot.canUserControl = false;
+		reticle.SetActive( false );
+		landingTimeline.StartRoute();
 	}
 	
 	IEnumerator Ending() {
