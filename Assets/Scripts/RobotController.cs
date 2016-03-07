@@ -50,6 +50,11 @@ public class RobotController : MonoBehaviour {
 			1,
 			agent.velocity.magnitude / agent.speed
 		);
+		if(agent.velocity.magnitude < .01f && dirtSound.isPlaying ) {
+			dirtSound.Stop();
+		} else if( !dirtSound.isPlaying ) {
+			dirtSound.Play();
+		}
 		// check if click
 		
 		if( canUserControl ) {

@@ -43,7 +43,7 @@ public class CameraManager : MonoBehaviour {
 	}
 	
 	public void StartSkyboxFadeto( float exposure, float duration ) {
-		
+		StartCoroutine( SkyboxFadeTo(exposure, duration) );
 	}
 	
 	IEnumerator SkyboxFadeTo( float exposure, float duration ) {

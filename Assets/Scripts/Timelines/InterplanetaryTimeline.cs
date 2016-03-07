@@ -8,6 +8,7 @@ public class InterplanetaryTimeline : MonoBehaviour {
 	// public SpaceWaypoint startWaypoint;
 	public SpaceRouteSegment startSegment;
 	public SpaceRouteSegment midSegment;
+	public Color marsRed;
 	
 	[HeaderAttribute("Times")]
 	public float openingDuration;
@@ -51,13 +52,13 @@ public class InterplanetaryTimeline : MonoBehaviour {
 		}
 		yield return new WaitForSeconds( startSegment.totalTime - cloudsLifetime );
 		midSegment.StartRoute();
-		CameraManager.inst.StartSkyboxFadeto( peakSkyboxTransitionTime, openingDuration );
+		// CameraManager.inst.StartSkyboxFadeto( peakSkyboxTransitionTime, openingDuration );
 		nasaTestSound.Play();
 		yield return new WaitForSeconds( midSegment.totalTime - closingDuration );
-		Color newFadeColor = Color.black;
+		Color newFadeColor = marsRed;
 		newFadeColor.a = 0;
 		CameraManager.inst.SetCameraFadeColor( newFadeColor );
-		CameraManager.inst.StartSkyboxFadeto( lowSkybox, closingDuration );
+		// CameraManager.inst.StartSkyboxFadeto( lowSkybox, closingDuration );
 		CameraManager.inst.StartCameraFadeTo( 1f, closingDuration );
 		yield return new WaitForSeconds( closingDuration );
 		SceneManager.LoadScene(2);

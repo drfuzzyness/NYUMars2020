@@ -11,11 +11,13 @@ public class MarsTimeline : MonoBehaviour {
 	public int requiredSamples;
 	public int samplesCollected;
 	
+	
 	[HeaderAttribute("Times")]
 	public float openingFadeIn;
 	public float endingFadeOut;
 	
-	[HeaderAttribute("UI")]
+	[HeaderAttribute("Robot UI")]
+	public Color marsRed;
 	public Text uiSamplesText;
 	public Text uiSamplesLabelText;
 	public Text uiInstructionsText;
@@ -33,8 +35,9 @@ public class MarsTimeline : MonoBehaviour {
 	public Transform headset;
 	public Transform headsetLookTarget;
 	public Transform tutorialContainer;
+	public AnimationCurve tutorialHideCurve;
 	
-	[HeaderAttribute("UI")]
+	[HeaderAttribute("Exit Graphics")]
 	public RawImage logoNYU;
 	public Text logoSubtitle;
 	public Text logoSubtitle2;
@@ -110,6 +113,9 @@ public class MarsTimeline : MonoBehaviour {
 	}
 	
 	IEnumerator Opening() {
+		Color newFadeColor = marsRed;
+		// newFadeColor.a = 0;
+		CameraManager.inst.SetCameraFadeColor( newFadeColor );
 		CameraManager.inst.StartCameraFadeTo(0f, openingFadeIn );
 		robot.canUserControl = false;
 		reticle.SetActive( false );
@@ -123,10 +129,21 @@ public class MarsTimeline : MonoBehaviour {
 	
 	IEnumerator MarsTutorial() {
 		LineRenderer line = headset.GetComponent<LineRenderer>();
-		for( float time = 0f; time < landingTimeline.totalTime; time += Time.deltaTime ) {
+		for( float time = 0f; time < landingTimeline.totalTime -2f; time += Time.deltaTime ) {
 			headset.LookAt( headsetLookTarget );
 			line.SetPosition(0, headset.position);
 			line.SetPosition(1, headsetLookTarget.position );
+			yield return null;
+		}
+		Vector3 start = tutorialContainer.localPosition;
+		Vector3 end = start + new Vector3( 0f, -20f, 0f);
+		for( float time = 0f; time < 2f; time += Time.deltaTime ) {
+			headset.LookAt( headsetLookTarget );
+			line.SetPosition(0, headset.position);
+			line.SetPosition(1, headsetLookTarget.position );
+			float ratio = time / 2f;
+			ratio = tutorialHideCurve.Evaluate( ratio );
+			tutorialContainer.localPosition = Vector3.Lerp( start, end, ratio );
 			yield return null;
 		}
 		headset.gameObject.SetActive( false );
@@ -147,7 +164,10 @@ public class MarsTimeline : MonoBehaviour {
 		// cue NYU animation
 		// wait
 		// fade out
-		yield return new WaitForSeconds(8f);
+		yield return new WaitForSeconds( moveToSpaceTimeline.totalTime - endingFadeOut );
+		Color newFadeColor = Color.black;
+		newFadeColor.a = 0;
+		CameraManager.inst.SetCameraFadeColor( newFadeColor );
 		CameraManager.inst.StartCameraFadeTo(1f, endingFadeOut);
 		music.Halt();
 		yield return new WaitForSeconds( endingFadeOut );
