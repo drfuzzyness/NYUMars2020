@@ -48,7 +48,7 @@ public class SpaceRouteSegment : MonoBehaviour {
 			// Debug.Log( "Remaining = " + toNextWaypointDisplacement.magnitude + ", Displacement = " + ( newDistance - distanceTraveled ) );
 	
 			if( toNextWaypointDisplacement.magnitude < ( newDistance - distanceTraveled ) ) {
-				Debug.LogWarning("TRIGGERED.");
+				// Debug.LogWarning("TRIGGERED.");
 				// Need to jump to new waypoint segment
 				distanceTraveled += toNextWaypointDisplacement.magnitude; // add position to move
 				subject.position = waypoints[next].transform.position; // move to next position

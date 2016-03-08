@@ -40,20 +40,20 @@ public class RobotController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		dirtSound.pitch = Mathf.Lerp(
-			0,
-			1,
-			agent.velocity.magnitude / agent.speed
-		);
-		dirtSound.volume = Mathf.Lerp(
-			0,
-			1,
-			agent.velocity.magnitude / agent.speed
-		);
-		if(agent.velocity.magnitude < .01f && dirtSound.isPlaying ) {
-			dirtSound.Stop();
-		} else if( !dirtSound.isPlaying ) {
-			dirtSound.Play();
+		if( agent.remainingDistance > .005f ) {
+			dirtSound.pitch = Mathf.Lerp(
+				0,
+				1,
+				agent.velocity.magnitude / agent.speed
+			);
+			dirtSound.volume = Mathf.Lerp(
+				0,
+				1,
+				agent.velocity.magnitude / agent.speed
+			);
+		} else {
+			dirtSound.pitch = 0f;
+			dirtSound.volume= 0f;
 		}
 		// check if click
 		

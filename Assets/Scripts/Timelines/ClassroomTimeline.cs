@@ -112,6 +112,7 @@ public class ClassroomTimeline : MonoBehaviour {
 		// }
 		CameraManager.inst.StartCameraFadeTo(1f, tutorialHideDelay / 2);
 		yield return new WaitForSeconds( tutorialHideDelay / 2);
+		classroomAmbienceAudio.Play();
 		tutorialContainer.SetActive(false);
 		classroomInterface.SetActive(true);
 		classroomSphere.SetActive( true );

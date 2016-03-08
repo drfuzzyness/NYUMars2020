@@ -38,9 +38,11 @@ public class MarsTimeline : MonoBehaviour {
 	public AnimationCurve tutorialHideCurve;
 	
 	[HeaderAttribute("Exit Graphics")]
+	public Color nyuPurple;
 	public RawImage logoNYU;
-	public Text logoSubtitle;
-	public Text logoSubtitle2;
+	public List<Text> logoTaglineWhite;
+	public List<Text> logoTaglinePurple;
+	public List<Text> logoTagline2;
 	
 	[HeaderAttribute("Navigation UI")]
 	public bool showCompass;
@@ -187,21 +189,37 @@ public class MarsTimeline : MonoBehaviour {
 			yield return null;
 		}
 		logoNYU.color = Color.white;
+		Color clearPurple = nyuPurple;
+		clearPurple.a = 0;
 		yield return new WaitForSeconds( 1f );
 		for( float time = 0f; time < 2f; time += Time.deltaTime ) {
-			logoSubtitle.color = Color.Lerp(
-				clearWhite,
-				Color.white,
-				time / 2f
-			);
+			foreach( Text thisText in logoTaglineWhite ) {
+				thisText.color = Color.Lerp(
+					clearWhite,
+					Color.white,
+					time / 2f
+				);
+			}
 			yield return null;
 		}
 		for( float time = 0f; time < 2f; time += Time.deltaTime ) {
-			logoSubtitle2.color = Color.Lerp(
-				clearWhite,
-				Color.white,
-				time / 2f
-			);
+			foreach( Text thisText in logoTaglinePurple ) {
+				thisText.color = Color.Lerp(
+					clearPurple,
+					nyuPurple,
+					time / 2f
+				);
+			}
+			yield return null;
+		}
+		for( float time = 0f; time < 2f; time += Time.deltaTime ) {
+			foreach( Text thisText in logoTagline2 ) {
+				thisText.color = Color.Lerp(
+					clearWhite,
+					Color.white,
+					time / 2f
+				);
+			}
 			yield return null;
 		}
 	}
