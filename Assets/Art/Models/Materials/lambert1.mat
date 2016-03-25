@@ -10,7 +10,7 @@ Material:
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -38,35 +38,7 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ShadowTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _FalloffTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Ramp
-        second:
-          m_Texture: {fileID: 2800000, guid: d440902fad11e807d00044888d76c639, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _ParallaxMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _ToonShade
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -106,6 +78,34 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ShadowTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _FalloffTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Ramp
+        second:
+          m_Texture: {fileID: 2800000, guid: d440902fad11e807d00044888d76c639, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ToonShade
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -121,24 +121,8 @@ Material:
         second: 0.5
       data:
         first:
-          name: _Outline
-        second: 0.005
-      data:
-        first:
           name: _Parallax
         second: 0.02
-      data:
-        first:
-          name: _InnerDiameter
-        second: 1.5
-      data:
-        first:
-          name: _OuterDiameter
-        second: 2
-      data:
-        first:
-          name: _DistanceInMeters
-        second: 2
       data:
         first:
           name: _ZWrite
@@ -171,6 +155,22 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _Outline
+        second: 0.005
+      data:
+        first:
+          name: _InnerDiameter
+        second: 1.5
+      data:
+        first:
+          name: _OuterDiameter
+        second: 2
+      data:
+        first:
+          name: _DistanceInMeters
+        second: 2
     m_Colors:
       data:
         first:
@@ -179,7 +179,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.5955882, g: 0.5955882, b: 0.5955882, a: 1}
+        second: {r: 0.875, g: 0.875, b: 0.875, a: 1}
       data:
         first:
           name: _OutlineColor

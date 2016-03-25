@@ -49,12 +49,15 @@ public class ClassroomTimeline : MonoBehaviour {
 	
 	[HeaderAttribute("Tutorial Objects")]
 	public GameObject tutorialContainer;
+	public Material spaceSkybox;
+	public Material indoorSkybox;
 	// public List<Renderer> tutorialObjects;
 	// public List<Text> tutorialTexts;
 	// public List<RawImage> tutorialImages;
 
 	// Use this for initialization
 	void Start () {
+		RenderSettings.skybox = spaceSkybox;
 		StartCoroutine( TakeoffOpening() );	
 	}
 	
