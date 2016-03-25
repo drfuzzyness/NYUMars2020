@@ -539,10 +539,11 @@ MonoBehaviour:
   player: {fileID: 1461791558}
   startSegment: {fileID: 1988830213}
   midSegment: {fileID: 968548313}
+  marsRed: {r: 0.5803922, g: 0.3529412, b: 0.20000002, a: 1}
   openingDuration: 2
   closingDuration: 2
   peakSkyboxTransitionTime: 5
-  peakSkybox: 2
+  peakSkybox: 1
   lowSkybox: 1
   rocketSound: {fileID: 1193957101}
   nasaTestSound: {fileID: 325806725}

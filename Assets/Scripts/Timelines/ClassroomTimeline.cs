@@ -1,45 +1,63 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ClassroomTimeline : MonoBehaviour {
+	[HeaderAttribute("Times")]
 	public float classroomDelay;
+	public float tutorialHideDelay;
 	public float classroomTransition;
 	public float rocketLaunchDelay;
 	public float rocketSpeed;
 	public float switchToRocketCamDelay;
 	public float screenFadeToBlackDelay;
+	
 	// public audioc
 	[HeaderAttribute("Objects")]
 	public GameObject classroomSphere;
+	public GameObject classroomInterface;
 	public GameObject room;
 	public GameObject launchpad;
 	public Text uiCountdownText;
 	public ParticleSystem rocketTrail;
+	
 	[HeaderAttribute("Smoke")]
 	public AnimationCurve smokeColorCurve;
 	public float smokeScaleTime;
 	public Color smokeStartColor;
 	public Color smokeEndColor;
 	public ParticleSystem roomSmoke;
+	
 	[HeaderAttribute("Camera Shake")]
 	public CameraShake launchpadCam;
 	public float peakLaunchpadCamShake;
 	public CameraShake rocketCam;
+	
 	[HeaderAttribute("Movements")]
 	public SpaceRouteSegment rocketLaunchSegment;
 	public SpaceRouteSegment movePlayerToChairSegment;
 	public SpaceRouteSegment movePlayerIntoScreenSegment;
 	public SpaceRouteSegment movePlayerUpFromClassroom;
+	
 	[HeaderAttribute("Sounds")]
 	public AudioController classroomVoiceover;
 	public AudioController countdownAudio;
 	public AudioController classroomAmbienceAudio;
 	public AudioController controlroomAmbienceAudio;
+	
+	[HeaderAttribute("Tutorial Objects")]
+	public GameObject tutorialContainer;
+	public Material spaceSkybox;
+	public Material indoorSkybox;
+	// public List<Renderer> tutorialObjects;
+	// public List<Text> tutorialTexts;
+	// public List<RawImage> tutorialImages;
 
 	// Use this for initialization
 	void Start () {
+		RenderSettings.skybox = spaceSkybox;
 		StartCoroutine( TakeoffOpening() );	
 	}
 	
@@ -49,8 +67,17 @@ public class ClassroomTimeline : MonoBehaviour {
 	}
 	
 	IEnumerator TakeoffOpening() {
+		classroomSphere.SetActive(false);
+		classroomInterface.SetActive(false);
+		tutorialContainer.SetActive(true);
 		CameraManager.inst.StartCameraFadeTo(0f, screenFadeToBlackDelay );
 		classroomAmbienceAudio.Play();
+		classroomSphere.SetActive( false );
+		while( !Cardboard.SDK.Triggered ) {
+			yield return null;
+		}
+		StartCoroutine( RaiseLightsRoutine() );
+		yield return new WaitForSeconds( tutorialHideDelay - 1f );
 		while( !Cardboard.SDK.Triggered ) {
 			yield return null;
 		}
@@ -67,6 +94,32 @@ public class ClassroomTimeline : MonoBehaviour {
 		CameraManager.inst.StartCameraFadeTo(1f, screenFadeToBlackDelay );
 		yield return new WaitForSeconds( screenFadeToBlackDelay );
 		SceneManager.LoadScene(1);
+	}
+	
+	IEnumerator RaiseLightsRoutine() {
+		// Color blackTrans = Color.black;
+		// blackTrans.a = 0;
+		// for( float time = 0f; time < tutorialHideDelay; time += Time.deltaTime ) {
+		// 	float ratio = time / tutorialHideDelay;
+		// 	Color currentColor = Color.Lerp( Color.white, blackTrans, ratio );
+		// 	foreach( Renderer thisRenderer in tutorialObjects ) {
+		// 		thisRenderer.material.color = currentColor;
+		// 	}
+		// 	foreach( Text thisText in tutorialTexts ) {
+		// 		thisText.color = currentColor;
+		// 	}
+		// 	foreach( RawImage thisImage in tutorialImages ) {
+		// 		thisImage.color = currentColor;
+		// 	}
+		// 	yield return null;
+		// }
+		CameraManager.inst.StartCameraFadeTo(1f, tutorialHideDelay / 2);
+		yield return new WaitForSeconds( tutorialHideDelay / 2);
+		classroomAmbienceAudio.Play();
+		tutorialContainer.SetActive(false);
+		classroomInterface.SetActive(true);
+		classroomSphere.SetActive( true );
+		CameraManager.inst.StartCameraFadeTo(0f, tutorialHideDelay / 2);
 	}
 	
 	IEnumerator SmokeMachineRoutine() {

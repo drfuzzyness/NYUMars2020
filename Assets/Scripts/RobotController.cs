@@ -31,7 +31,7 @@ public class RobotController : MonoBehaviour {
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
 		rbody = GetComponent<Rigidbody>();
-		controlPlayerCamera = true;
+		controlPlayerCamera = false;
 	}
 	
 	void OnDrawGizmos() {
@@ -40,16 +40,21 @@ public class RobotController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		dirtSound.pitch = Mathf.Lerp(
-			0,
-			1,
-			agent.velocity.magnitude / agent.speed
-		);
-		dirtSound.volume = Mathf.Lerp(
-			0,
-			1,
-			agent.velocity.magnitude / agent.speed
-		);
+		if( agent.remainingDistance > .005f ) {
+			dirtSound.pitch = Mathf.Lerp(
+				0,
+				1,
+				agent.velocity.magnitude / agent.speed
+			);
+			dirtSound.volume = Mathf.Lerp(
+				0,
+				1,
+				agent.velocity.magnitude / agent.speed
+			);
+		} else {
+			dirtSound.pitch = 0f;
+			dirtSound.volume= 0f;
+		}
 		// check if click
 		
 		if( canUserControl ) {
