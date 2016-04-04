@@ -1381,24 +1381,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 376958375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -98529514, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: ab6b9ef580c0d4157a5919d20de37d7e, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 2800000, guid: aaad5b63695d344629ed6c0927e6fabc, type: 3}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+  m_Sprite: {fileID: 21300000, guid: aaad5b63695d344629ed6c0927e6fabc, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!222 &376958378
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2839,7 +2840,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   nyuPurple: {r: 0.34117648, g: 0, b: 0.5686275, a: 1}
-  logoNYU: {fileID: 376958377}
+  logoNYU: {fileID: 0}
   logoTaglineWhite:
   - {fileID: 1775838772}
   - {fileID: 1015101121}
@@ -3813,72 +3814,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 406146, guid: 491457ce9b706495681b9ec193d3e148, type: 2}
   m_PrefabInternal: {fileID: 761770935}
---- !u!1001 &769769844
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 266.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 33.712013
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 189.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.99032897
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.13873917
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0639644c04667484792e74a48b2aa558, type: 3}
-  m_IsPrefabParent: 0
 --- !u!1 &777481484
 GameObject:
   m_ObjectHideFlags: 0
@@ -5227,7 +5162,7 @@ Transform:
   - {fileID: 833667888}
   - {fileID: 1162819087}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
 --- !u!1001 &1051779497
 Prefab:
   m_ObjectHideFlags: 0
@@ -5703,7 +5638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1121381271
 RectTransform:
   m_ObjectHideFlags: 0

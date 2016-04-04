@@ -357,7 +357,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: lunabotics.poly.edu
+  m_Text: lunabotics.nyu.edu
 --- !u!222 &86286360
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -690,7 +690,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -135}
-  m_SizeDelta: {x: 598, y: 196}
+  m_SizeDelta: {x: 724, y: 196}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &328120689
 MonoBehaviour:
@@ -724,7 +724,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Find out more at
+  m_Text: Find out more & JOin us at
 --- !u!222 &328120690
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1052,12 +1052,12 @@ GameObject:
   - 114: {fileID: 479774696}
   - 114: {fileID: 479774695}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Lunabots Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &479774694
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1352,7 +1352,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 713950164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 42.999977}
+  m_LocalPosition: {x: 0, y: 0, z: 43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 471162950}
@@ -1360,7 +1360,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000061035156, y: -94}
-  m_SizeDelta: {x: 598, y: 92}
+  m_SizeDelta: {x: 698, y: 119}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &713950166
 MonoBehaviour:
@@ -1382,7 +1382,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 30d598c40fbc449e29b45fb2ad75cfbb, type: 3}
     m_FontSize: 80
     m_FontStyle: 3
     m_BestFit: 0
@@ -1916,7 +1916,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Explore Mars
+  m_Text: Return to MARS
 --- !u!222 &1182589797
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2199,7 +2199,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000061035156, y: -3}
-  m_SizeDelta: {x: 598, y: 92}
+  m_SizeDelta: {x: 644, y: 109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1424477299
 MonoBehaviour:
@@ -2221,7 +2221,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 30d598c40fbc449e29b45fb2ad75cfbb, type: 3}
     m_FontSize: 80
     m_FontStyle: 3
     m_BestFit: 0
@@ -2394,12 +2394,12 @@ GameObject:
   - 222: {fileID: 1649537117}
   - 114: {fileID: 1649537116}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Lunabots Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1649537115
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2407,15 +2407,15 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1649537114}
   m_LocalRotation: {x: 0.25189504, y: 0, z: 0, w: 0.9677546}
-  m_LocalPosition: {x: 0, y: 0, z: -65}
+  m_LocalPosition: {x: 0, y: 0, z: -32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1779008197}
   m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -442}
-  m_SizeDelta: {x: 668, y: 196}
+  m_AnchoredPosition: {x: 0, y: -379}
+  m_SizeDelta: {x: 877, y: 196}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1649537116
 MonoBehaviour:
@@ -2449,7 +2449,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: More about LUNABOTICS
+  m_Text: 'More about the
+
+    NYU NASA Robotics Competition Team'
 --- !u!222 &1649537117
 CanvasRenderer:
   m_ObjectHideFlags: 0
