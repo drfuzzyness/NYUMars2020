@@ -90,7 +90,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleIdentifier: edu.NYU.engineering.tandonmars
-  bundleVersion: 1.0
+  bundleVersion: 1.1
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
@@ -105,7 +105,7 @@ PlayerSettings:
   stripEngineCode: 1
   iPhoneStrippingLevel: 0
   iPhoneScriptCallOptimization: 0
-  iPhoneBuildNumber: 0
+  iPhoneBuildNumber: 22
   ForceInternetPermission: 0
   ForceSDCardPermission: 0
   CreateWallpaper: 0
@@ -116,7 +116,7 @@ PlayerSettings:
     serializedVersion: 2
     m_Bits: 238
   iPhoneSdkVersion: 988
-  iPhoneTargetOSVersion: 22
+  iPhoneTargetOSVersion: 28
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIRequiresFullScreen: 1
@@ -173,35 +173,73 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: dbfd8b0f742d44d1fb4eb4ab7698c880, type: 3}
+      m_Icon: {fileID: 2800000, guid: 8459e8fcd23c84799bacce12040fe58c, type: 3}
       m_Width: 128
       m_Height: 128
   - m_BuildTarget: Android
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: dbfd8b0f742d44d1fb4eb4ab7698c880, type: 3}
+      m_Icon: {fileID: 2800000, guid: 69cfa03ef32e041eca4d98651cb37a34, type: 3}
       m_Width: 192
       m_Height: 192
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: 03a29fd68a4434be381c760a755af81e, type: 3}
       m_Width: 144
       m_Height: 144
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: 82f8ae057279c42b2a9b1037b07e7328, type: 3}
       m_Width: 96
       m_Height: 96
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: ee1b81fa1850d4a01ab803841e2ae7bb, type: 3}
       m_Width: 72
       m_Height: 72
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: 9fd004e75c367489092578d134c9466c, type: 3}
       m_Width: 48
       m_Height: 48
     - serializedVersion: 2
       m_Icon: {fileID: 0}
       m_Width: 36
       m_Height: 36
+  - m_BuildTarget: iPhone
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: df36b74bce14d4a7dacc46939c480da6, type: 3}
+      m_Width: 180
+      m_Height: 180
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: bd11e91adb6fc4f02bdcf5036d696bdb, type: 3}
+      m_Width: 167
+      m_Height: 167
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 402be0a683ea24cbfbcf1119edfea108, type: 3}
+      m_Width: 152
+      m_Height: 152
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: fdfae4f65b8da4d99ab77c78bd5df733, type: 3}
+      m_Width: 144
+      m_Height: 144
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 2b8792b31e2eb4849b60e1f207ebbb40, type: 3}
+      m_Width: 120
+      m_Height: 120
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: b3b7d6d4ff1c34ac38d262397856c0a3, type: 3}
+      m_Width: 114
+      m_Height: 114
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: edd1ea62f4d6043d080e091ae8008fe5, type: 3}
+      m_Width: 76
+      m_Height: 76
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 0502282e1302543ad9331f33afe22694, type: 3}
+      m_Width: 72
+      m_Height: 72
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: e3e40b69888944ee4ad66ad458c40b55, type: 3}
+      m_Width: 57
+      m_Height: 57
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   webPlayerTemplate: APPLICATION:Default

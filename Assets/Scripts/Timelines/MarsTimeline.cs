@@ -39,7 +39,7 @@ public class MarsTimeline : MonoBehaviour {
 	
 	[HeaderAttribute("Exit Graphics")]
 	public Color nyuPurple;
-	public RawImage logoNYU;
+	public Image logoNYU;
 	public List<Text> logoTaglineWhite;
 	public List<Text> logoTaglinePurple;
 	public List<Text> logoTagline2;
